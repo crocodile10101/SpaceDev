@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaceDev | Создание сайтов-визиток</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+        <!-- Иконка сайта (Favicon) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='30' fill='%23ffffff'/%3E%3Cellipse cx='50' cy='50' rx='48' ry='12' fill='none' stroke='%23888888' stroke-width='6' transform='rotate(-25 50 50)'/%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23050505'/%3E%3Ccircle cx='50' cy='50' r='30' fill='%23ffffff'/%3E%3Cellipse cx='50' cy='50' rx='48' ry='12' fill='none' stroke='%23888888' stroke-width='6' transform='rotate(-25 50 50)'/%3E%3C/svg%3E">
+    <style>
+        /* --- СБРОС СТИЛЕЙ --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #ffffff;
+            background-color: #050505;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- ФОН (ВИДЕО ИЗ ПАПКИ PAGES + БЛЮР + ЧБ) --- */
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .video-background video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) blur(6px) brightness(0.5); 
+            transform: scale(1.05); 
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.85) 100%);
+        }
+
+        /* --- ШАПКА --- */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .logo span { color: #888; }
+
+        .nav a {
+            color: #ccc;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .nav a:hover { color: #fff; }
+
+        .btn-small {
+            border: 1px solid #fff;
+            padding: 8px 16px;
+            border-radius: 4px;
+        }
+
+        .btn-small:hover { background: #fff; color: #000 !important; }
+
+        /* --- СЕКЦИИ И ТИПОГРАФИКА --- */
+        .section { padding: 120px 0; position: relative; }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        /* --- ГЛАВНЫЙ ЭКРАН --- */
+        .hero { height: 100vh; display: flex; align-items: center; text-align: center; }
+        .hero p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 40px; color: #bbb; }
+
+        /* --- КНОПКИ --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: #fff;
+            color: #000;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            border: 1px solid #fff;
+            font-size: 1rem;
+        }
+
+        .btn:hover { background: transparent; color: #fff; }
+        .btn svg { width: 20px; height: 20px; fill: currentColor; }
+        .btn-outline { background: transparent; color: #fff; }
+        .btn-outline:hover { background: #fff; color: #000; }
+        .contact-buttons { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; }
+
+        /* --- СЕТКА И КАРТОЧКИ --- */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, background 0.3s;
+        }
+
+        .card:hover { transform: translateY(-5px); background: rgba(255, 255, 255, 0.1); }
+        .card h3 { margin-bottom: 15px; font-family: 'Montserrat', sans-serif; }
+        .card p { color: #aaa; font-size: 0.95rem; }
+
+        /* --- СПИСОК ПРЕИМУЩЕСТВ --- */
+        .features { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .features li { background: rgba(0,0,0,0.5); padding: 20px; border-left: 3px solid #fff; font-size: 1.1rem; }
+
+        /* --- ПРОЦЕСС --- */
+        .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .step { border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; }
+        .step span { font-size: 3rem; font-weight: 800; color: rgba(255,255,255,0.1); display: block; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; }
+        .step h4 { margin-bottom: 10px; font-size: 1.2rem; }
+        .step p { color: #888; font-size: 0.9rem; }
+
+        /* --- КОНТАКТЫ --- */
+        .contact-section { text-align: center; padding-bottom: 100px; }
+        .contact-section p { margin-bottom: 40px; color: #aaa; font-size: 1.1rem; }
+
+        /* --- ПОДВАЛ --- */
+        footer { padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.9); font-size: 0.85rem; color: #777; }
+        .footer-content { display: flex; flex-direction: column; gap: 15px; text-align: center; }
+        .footer-links a { color: #777; text-decoration: underline; margin: 0 10px; transition: color 0.3s; }
+        .footer-links a:hover { color: #fff; }
+
+        /* --- АНИМАЦИИ --- */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+
+        /* --- АДАПТИВ --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            .nav { display: none; }
+            .header { justify-content: center; }
+            .features { grid-template-columns: 1fr; }
+            .process-steps { grid-template-columns: 1fr 1fr; }
+            .btn { width: 100%; margin-bottom: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="video-background">
+        <video autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=2048&auto=format&fit=crop">
+            <source src="pages/video.mp4" type="video/mp4">
+        </video>
+        <div class="overlay"></div>
+    </div>
+
+    <header class="header">
+        <div class="logo">SpaceDev<span>.</span></div>
+        <nav class="nav">
+            <a href="#about">Обо мне</a>
+            <a href="#services">Услуги</a>
+            <a href="#process">Процесс</a>
+            <a href="#contact" class="btn-small">Связаться</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1 class="reveal">Создаю сайты, которые<br>приводят клиентов</h1>
+            <p class="reveal delay-1">Простые, быстрые и эффективные сайты-визитки для малого бизнеса, экспертов и физических лиц. Без переплат за лишние функции.</p>
+            <a href="#contact" class="btn reveal delay-2">Обсудить проект</a>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="reveal">Кому подойдут мои услуги?</h2>
+            <div class="grid">
+                <div class="card reveal"><h3>Малый бизнес</h3><p>Кафе, барбершопы, магазины. Понятная страница, чтобы вас находили.</p></div>
+                <div class="card reveal delay-1"><h3>Эксперты</h3><p>Психологи, юристы, репетиторы. Личный бренд, портфолио и удобная запись.</p></div>
+                <div class="card reveal delay-2"><h3>Физические лица</h3><p>Визитки-портфолио для творческих людей, резюме-сайты и landing page.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="reveal">Почему стоит работать со мной?</h2>
+            <ul class="features">
+                <li class="reveal"><strong>⚡ Быстро:</strong> Сайт-визитка занимает от 3 до 7 дней.</li>
+                <li class="reveal delay-1"><strong>💎 Современно:</strong> Адаптив под все телефоны, чистый код.</li>
+                <li class="reveal delay-2"><strong>💬 Прозрачно:</strong> Понятный план работ, никаких скрытых платежей.</li>
+                <li class="reveal delay-3"><strong>🤝 Поддержка:</strong> Останусь на связи после сдачи проекта.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="process" class="section">
+        <div class="container">
+            <h2 class="reveal">Как проходит работа</h2>
+            <div class="process-steps">
+                <div class="step reveal"><span>01</span><h4>Бриф</h4><p>Обсуждаем цели и задачи в мессенджере.</p></div>
+                <div class="step reveal delay-1"><span>02</span><h4>Макет</h4><p>Согласовываем структуру и внешний вид.</p></div>
+                <div class="step reveal delay-2"><span>03</span><h4>Разработка</h4><p>Верстаю, наполняю контентом.</p></div>
+                <div class="step reveal delay-3"><span>04</span><h4>Запуск</h4><p>Переносим на хостинг и тестируем.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <h2 class="reveal">Готовы запустить свой сайт?</h2>
+            <p class="reveal delay-1">Напишите мне, и мы обсудим ваш проект. Оценка и консультация — бесплатно.</p>
+            <div class="contact-buttons reveal delay-2">
+                <!-- Telegram -->
+                <a href="https://t.me/efimka64ru" class="btn" target="_blank">
+                    <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                    Telegram
+                </a>
+
+                <!-- WhatsApp (обновленная ссылка) -->
+                <a href="https://wa.me/79518866708?s=p" class="btn btn-outline" target="_blank">
+                    <svg viewBox="0 0 24 24"><path d="M12.031 0C5.405 0 0 5.405 0 12.031c0 2.116.554 4.136 1.603 5.954L.012 24l6.15-1.613a11.96 11.96 0 0 0 5.869 1.526c6.626 0 12.031-5.405 12.031-12.031S18.657 0 12.031 0zm0 22.033c-1.83 0-3.617-.492-5.174-1.423l-.37-.222-3.835 1.005 1.023-3.741-.244-.391a10.01 10.01 0 0 1-1.531-5.34c0-5.514 4.486-10 10.001-10s10 4.486 10 10c0 5.515-4.486 10-10 10zm5.48-7.49c-.3-.15-1.774-.875-2.048-.975-.274-.1-.474-.15-.674.15-.2.3-.774.975-.949 1.175-.174.2-.35.225-.65.075-.3-.15-1.268-.467-2.414-1.487-.893-.795-1.492-1.775-1.667-2.075-.174-.3-.019-.462.131-.611.134-.133.3-.35.45-.525.15-.175.2-.3.3-.5.1-.2.05-.375-.025-.525-.075-.15-.674-1.625-.924-2.225-.244-.585-.493-.506-.674-.515-.174-.008-.374-.01-.574-.01-.2 0-.524.075-.799.375-.274.3-1.048 1.025-1.048 2.5s1.073 2.9 1.223 3.1c.15.2 2.11 3.22 5.111 4.515.715.31 1.274.496 1.71.634.72.229 1.374.197 1.893.12.577-.086 1.774-.725 2.023-1.425.25-.7.25-1.3.174-1.425-.075-.125-.275-.2-.575-.35z"/></svg>
+                    WhatsApp
+                </a>
+
+                <!-- Макс (официальная ссылка и стилизованная иконка) -->
+                <a href="https://max.ru/u/f9LHodD0cOJp-iZloH6GQSHKpJvFpdVHyfZdPKTKPtq1sS_oix3FYg4m1QA" class="btn btn-outline" target="_blank">
+                    <svg viewBox="0 0 24 24" style="fill: #fff;">
+                        <!-- Официальный логотип Макс -->
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.5 14.5h-3v-5h3v5zm0-6.5h-3V7h3v3z"/>
+                    </svg>
+                    Макс
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2026 SpaceDev. Все права защищены.</p>
+            <p>Владелец сайта: <strong>физическое лицо</strong> (разработка сайтов на заказ).</p>
+            <p>Связь: <a href="tel:+79518866708" style="color: #777; text-decoration: none;">+7 (951) 886-67-08</a></p>
+            
+            <div class="footer-links">
+                <a href="privacy.html" target="_blank">Политика конфиденциальности</a>
+                <a href="terms.html" target="_blank">Условия использования</a>
+            </div>
+            <p style="font-size: 0.75rem; margin-top: 10px; opacity: 0.5;">Сайт носит информационный характер и не является публичной офертой.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+            const revealOnScroll = () => {
+                const windowHeight = window.innerHeight;
+                const elementVisible = 100;
+                reveals.forEach((reveal) => {
+                    const elementTop = reveal.getBoundingClientRect().top;
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveal.classList.add('active');
+                    }
+                });
+            };
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll(); 
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if(target) target.scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
