@@ -5,16 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SpaceDev | Создание сайтов-визиток</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
-        <!-- Иконка сайта (Favicon) -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='30' fill='%23ffffff'/%3E%3Cellipse cx='50' cy='50' rx='48' ry='12' fill='none' stroke='%23888888' stroke-width='6' transform='rotate(-25 50 50)'/%3E%3C/svg%3E">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23050505'/%3E%3Ccircle cx='50' cy='50' r='30' fill='%23ffffff'/%3E%3Cellipse cx='50' cy='50' rx='48' ry='12' fill='none' stroke='%23888888' stroke-width='6' transform='rotate(-25 50 50)'/%3E%3C/svg%3E">
     <style>
         /* --- СБРОС СТИЛЕЙ --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -24,124 +18,51 @@
             overflow-x: hidden;
         }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
-        /* --- ФОН (ВИДЕО ИЗ ПАПКИ PAGES + БЛЮР + ЧБ) --- */
+        /* --- ФОН --- */
         .video-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -2;
-            overflow: hidden;
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -2; overflow: hidden;
         }
-
         .video-background video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            width: 100%; height: 100%; object-fit: cover;
             filter: grayscale(100%) blur(6px) brightness(0.5); 
             transform: scale(1.05); 
         }
-
         .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: radial-gradient(circle at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.85) 100%);
         }
 
         /* --- ШАПКА --- */
         .header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(10px);
-            z-index: 100;
+            position: fixed; top: 0; width: 100%; padding: 20px 40px;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(10px); z-index: 100;
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-
-        .logo {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 24px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            color: #fff;
-            text-decoration: none;
-        }
-
+        .logo { font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 800; color: #fff; text-decoration: none; }
         .logo span { color: #888; }
-
-        .nav a {
-            color: #ccc;
-            text-decoration: none;
-            margin-left: 25px;
-            font-size: 15px;
-            transition: color 0.3s ease;
-        }
-
+        .nav a { color: #ccc; text-decoration: none; margin-left: 25px; font-size: 15px; transition: color 0.3s ease; }
         .nav a:hover { color: #fff; }
-
-        .btn-small {
-            border: 1px solid #fff;
-            padding: 8px 16px;
-            border-radius: 4px;
-        }
-
+        .btn-small { border: 1px solid #fff; padding: 8px 16px; border-radius: 4px; }
         .btn-small:hover { background: #fff; color: #000 !important; }
 
         /* --- СЕКЦИИ И ТИПОГРАФИКА --- */
         .section { padding: 120px 0; position: relative; }
-
-        h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 4rem;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: -1px;
-        }
-
-        h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            text-transform: uppercase;
-        }
-
-        /* --- ГЛАВНЫЙ ЭКРАН --- */
+        h1 { font-family: 'Montserrat', sans-serif; font-size: 4rem; line-height: 1.1; margin-bottom: 20px; text-transform: uppercase; letter-spacing: -1px; }
+        h2 { font-family: 'Montserrat', sans-serif; font-size: 2.5rem; margin-bottom: 40px; text-transform: uppercase; }
         .hero { height: 100vh; display: flex; align-items: center; text-align: center; }
         .hero p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 40px; color: #bbb; }
 
         /* --- КНОПКИ --- */
         .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 15px 30px;
-            background: #fff;
-            color: #000;
-            text-decoration: none;
-            font-weight: 600;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            border: 1px solid #fff;
-            font-size: 1rem;
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            padding: 15px 30px; background: #fff; color: #000; text-decoration: none;
+            font-weight: 600; border-radius: 4px; transition: all 0.3s ease;
+            border: 1px solid #fff; font-size: 1rem;
         }
-
         .btn:hover { background: transparent; color: #fff; }
         .btn svg { width: 20px; height: 20px; fill: currentColor; }
         .btn-outline { background: transparent; color: #fff; }
@@ -150,16 +71,10 @@
 
         /* --- СЕТКА И КАРТОЧКИ --- */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-
         .card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 40px;
-            border-radius: 8px;
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s ease, background 0.3s;
+            background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px; border-radius: 8px; backdrop-filter: blur(10px); transition: transform 0.3s ease, background 0.3s;
         }
-
         .card:hover { transform: translateY(-5px); background: rgba(255, 255, 255, 0.1); }
         .card h3 { margin-bottom: 15px; font-family: 'Montserrat', sans-serif; }
         .card p { color: #aaa; font-size: 0.95rem; }
@@ -168,81 +83,55 @@
         .features { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
         .features li { background: rgba(0,0,0,0.5); padding: 20px; border-left: 3px solid #fff; font-size: 1.1rem; }
 
-        /* --- КАРУСЕЛЬ ПОРТФОЛИО --- */
-        .carousel-wrapper {
-            position: relative;
-            display: flex;
-            align-items: center;
-            margin-top: 20px;
+        /* --- КАРУСЕЛЬ ПОРТФОЛИО (ОБНОВЛЕНО) --- */
+        .carousel-wrapper { position: relative; display: flex; align-items: center; margin-top: 20px; }
+        
+        /* Подсказка для пользователя */
+        .carousel-hint {
+            text-align: center; font-size: 0.9rem; color: #888; margin-bottom: 20px;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
         }
 
         .carousel-track {
-            display: flex;
-            gap: 30px;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            scroll-behavior: smooth;
-            padding-bottom: 20px;
-            scrollbar-width: none; /* Скрываем скроллбар для Firefox */
+            display: flex; gap: 30px; overflow-x: auto; scroll-snap-type: x mandatory;
+            scroll-behavior: smooth; padding-bottom: 20px; scrollbar-width: none;
         }
-        .carousel-track::-webkit-scrollbar { display: none; } /* Скрываем для Chrome/Safari */
+        .carousel-track::-webkit-scrollbar { display: none; }
 
         .portfolio-card {
-            flex: 0 0 320px;
-            scroll-snap-align: start;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            overflow: hidden;
-            text-decoration: none;
-            color: #fff;
-            transition: transform 0.3s ease, background 0.3s;
+            flex: 0 0 320px; scroll-snap-align: start;
+            background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px; overflow: hidden; text-decoration: none; color: #fff;
+            transition: transform 0.3s ease, background 0.3s, box-shadow 0.3s;
+            display: flex; flex-direction: column;
         }
-
         .portfolio-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px); background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
 
-        .portfolio-image {
-            width: 100%;
-            height: 200px;
-            overflow: hidden;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            background: #111; /* Заглушка, если картинки еще нет */
-        }
+        .portfolio-image { width: 100%; height: 200px; overflow: hidden; position: relative; background: #111; }
+        .portfolio-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .portfolio-card:hover .portfolio-image img { transform: scale(1.05); }
 
-        .portfolio-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .portfolio-card:hover .portfolio-image img {
-            transform: scale(1.05);
-        }
-
-        .portfolio-info { padding: 20px; }
+        .portfolio-info { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; }
         .portfolio-info h3 { margin-bottom: 5px; font-family: 'Montserrat', sans-serif; font-size: 1.1rem; }
-        .portfolio-info p { color: #888; font-size: 0.9rem; margin: 0; }
+        .portfolio-info p { color: #888; font-size: 0.9rem; margin-bottom: 15px; flex-grow: 1; }
+
+        /* Кнопка "Открыть сайт" внутри карточки */
+        .card-action {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 0.9rem; color: #fff; font-weight: 600; border-bottom: 1px solid #fff;
+            padding-bottom: 2px; width: max-content; transition: color 0.3s, border-color 0.3s;
+        }
+        .portfolio-card:hover .card-action { color: #ccc; border-color: #ccc; }
+        .card-action svg { width: 14px; height: 14px; fill: currentColor; }
 
         .carousel-btn {
-            background: #fff;
-            color: #000;
-            border: none;
-            border-radius: 50%;
-            width: 45px;
-            height: 45px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            position: absolute;
-            z-index: 10;
-            font-size: 18px;
-            transition: background 0.3s, transform 0.2s;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            background: #fff; color: #000; border: none; border-radius: 50%;
+            width: 45px; height: 45px; display: flex; justify-content: center; align-items: center;
+            cursor: pointer; position: absolute; z-index: 10; font-size: 18px;
+            transition: background 0.3s, transform 0.2s; box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
         .carousel-btn:hover { background: #ccc; transform: scale(1.1); }
         .carousel-btn.prev { left: -22px; }
@@ -259,11 +148,28 @@
         .contact-section { text-align: center; padding-bottom: 100px; }
         .contact-section p { margin-bottom: 40px; color: #aaa; font-size: 1.1rem; }
 
-        /* --- ПОДВАЛ --- */
+        /* --- ПОДВАЛ И ССЫЛКИ --- */
         footer { padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.9); font-size: 0.85rem; color: #777; }
-        .footer-content { display: flex; flex-direction: column; gap: 15px; text-align: center; }
-        .footer-links a { color: #777; text-decoration: underline; margin: 0 10px; transition: color 0.3s; }
-        .footer-links a:hover { color: #fff; }
+        .footer-content { display: flex; flex-direction: column; gap: 15px; text-align: center; align-items: center; }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        .footer-links a {
+            color: #aaa; text-decoration: none; transition: all 0.3s;
+            padding: 8px 16px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 4px;
+            background: rgba(255,255,255,0.02);
+            font-size: 0.8rem;
+        }
+        .footer-links a:hover {
+            color: #fff; border-color: #fff; background: rgba(255,255,255,0.1);
+        }
 
         /* --- АНИМАЦИИ --- */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
@@ -272,12 +178,12 @@
         .delay-2 { transition-delay: 0.2s; }
         .delay-3 { transition-delay: 0.3s; }
 
-        /* --- АДАПТИВ --- */
+        /* --- АДАПТИВ (МОБИЛЬНЫЕ) --- */
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
             h2 { font-size: 2rem; }
             .nav { display: none; }
-            .header { justify-content: center; }
+            .header { justify-content: center; padding: 15px; }
             .features { grid-template-columns: 1fr; }
             .process-steps { grid-template-columns: 1fr 1fr; }
             .btn { width: 100%; margin-bottom: 10px; }
@@ -285,6 +191,13 @@
             /* Отключаем стрелки на мобильных, чтобы свайпать пальцем */
             .carousel-btn { display: none; }
             .portfolio-card { flex: 0 0 280px; }
+            
+            /* Подсказка на мобильных */
+            .carousel-hint { flex-direction: column; gap: 5px; font-size: 0.8rem; margin-bottom: 15px; }
+            
+            /* Ссылки в подвале ставим в столбик */
+            .footer-links { flex-direction: column; width: 100%; max-width: 300px; gap: 10px; }
+            .footer-links a { width: 100%; text-align: center; }
         }
     </style>
 </head>
@@ -313,7 +226,7 @@
             <h1 class="reveal">Создаю сайты, которые<br>приводят клиентов</h1>
             <p class="reveal delay-1">Простые, быстрые и эффективные сайты-визитки для малого бизнеса, экспертов и физических лиц. Без переплат за лишние функции.</p>
             <a href="#contact" class="btn reveal delay-2">Обсудить проект</a>
-            <a href="#rabot" class="btn reveal delay-2">Мои работы</a>
+            <a href="#portfolio" class="btn reveal delay-2">Мои работы</a>
         </div>
     </section>
 
@@ -343,9 +256,14 @@
     <!-- СЕКЦИЯ ПОРТФОЛИО -->
     <section id="portfolio" class="section">
         <div class="container">
-            <h2  id="rabot" class="reveal">Мои работы</h2>
+            <h2 class="reveal">Мои работы</h2>
+            
+            <!-- Подсказка для кликабельности -->
+            <div class="carousel-hint reveal delay-1">
+                <span>👉 Нажмите на карточку, чтобы открыть живой пример сайта</span>
+            </div>
+
             <div class="carousel-wrapper reveal delay-1">
-                <!-- Кнопка влево -->
                 <button class="carousel-btn prev" aria-label="Назад">&#10094;</button>
                 
                 <div class="carousel-track">
@@ -357,6 +275,11 @@
                         <div class="portfolio-info">
                             <h3>Nail Studio «Бархат»</h3>
                             <p>Сайт-визитка для студии красоты</p>
+                            <!-- Явная кнопка-ссылка -->
+                            <span class="card-action">
+                                Открыть сайт
+                                <svg viewBox="0 0 24 24"><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" /></svg>
+                            </span>
                         </div>
                     </a>
 
@@ -368,6 +291,10 @@
                         <div class="portfolio-info">
                             <h3>Шиномонтаж «Колесо»</h3>
                             <p>Сайт-визитка для автосервиса</p>
+                            <span class="card-action">
+                                Открыть сайт
+                                <svg viewBox="0 0 24 24"><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" /></svg>
+                            </span>
                         </div>
                     </a>
 
@@ -379,11 +306,14 @@
                         <div class="portfolio-info">
                             <h3>Фотограф «Кадр»</h3>
                             <p>Портфолио с галереей работ и контактами</p>
+                            <span class="card-action">
+                                Открыть сайт
+                                <svg viewBox="0 0 24 24"><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" /></svg>
+                            </span>
                         </div>
                     </a>
                 </div>
 
-                <!-- Кнопка вправо -->
                 <button class="carousel-btn next" aria-label="Вперед">&#10095;</button>
             </div>
         </div>
@@ -435,6 +365,7 @@
             <p>Владелец сайта: <strong>физическое лицо</strong> (разработка сайтов на заказ).</p>
             <p>Связь: <a href="tel:+79518866708" style="color: #777; text-decoration: none;">+7 (951) 886-67-08</a></p>
             
+            <!-- ОБНОВЛЕННЫЙ БЛОК ССЫЛОК -->
             <div class="footer-links">
                 <a href="privacy.html">Политика конфиденциальности</a>
                 <a href="terms.html">Условия использования</a>
@@ -475,14 +406,10 @@
             const prevBtn = document.querySelector('.carousel-btn.prev');
 
             if (track && nextBtn && prevBtn) {
-                // Прокрутка вправо
                 nextBtn.addEventListener('click', () => {
                     const cardWidth = track.querySelector('.portfolio-card').offsetWidth;
-                    // Добавляем 30px (gap между карточками)
                     track.scrollBy({ left: cardWidth + 30, behavior: 'smooth' }); 
                 });
-
-                // Прокрутка влево
                 prevBtn.addEventListener('click', () => {
                     const cardWidth = track.querySelector('.portfolio-card').offsetWidth;
                     track.scrollBy({ left: -(cardWidth + 30), behavior: 'smooth' });
