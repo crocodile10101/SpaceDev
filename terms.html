@@ -4,37 +4,176 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Условия использования | SpaceDev</title>
-    <style>
-        body { background: #0a0a0a; color: #ccc; font-family: 'Inter', sans-serif; line-height: 1.8; padding: 40px 20px; }
-        .container { max-width: 800px; margin: 0 auto; }
-        h1 { color: #fff; font-family: 'Montserrat', sans-serif; margin-bottom: 30px; }
-        h2 { color: #fff; font-size: 1.2rem; margin-top: 30px; margin-bottom: 10px; }
-        .back { display: inline-block; margin-bottom: 30px; color: #fff; text-decoration: none; border: 1px solid #333; padding: 10px 20px; border-radius: 4px; }
-        .back:hover { background: #fff; color: #000; }
-    </style>
-        <!-- Иконка сайта (Favicon) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='30' fill='%23ffffff'/%3E%3Cellipse cx='50' cy='50' rx='48' ry='12' fill='none' stroke='%23888888' stroke-width='6' transform='rotate(-25 50 50)'/%3E%3C/svg%3E">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23050505'/%3E%3Ccircle cx='50' cy='50' r='30' fill='%23ffffff'/%3E%3Cellipse cx='50' cy='50' rx='48' ry='12' fill='none' stroke='%23888888' stroke-width='6' transform='rotate(-25 50 50)'/%3E%3C/svg%3E">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #ffffff;
+            background-color: #050505;
+            line-height: 1.7;
+            overflow-x: hidden;
+            background-image: radial-gradient(circle at 50% 0%, rgba(30,30,30,0.6) 0%, rgba(5,5,5,1) 60%);
+        }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+
+        /* --- ШАПКА --- */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .logo { font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 800; letter-spacing: 1px; }
+        .logo span { color: #888; }
+        .nav a { color: #ccc; text-decoration: none; margin-left: 25px; font-size: 15px; transition: color 0.3s ease; }
+        .nav a:hover { color: #fff; }
+        .btn-small { border: 1px solid #fff; padding: 8px 16px; border-radius: 4px; }
+        .btn-small:hover { background: #fff; color: #000 !important; }
+
+        /* --- КОНТЕНТ --- */
+        .policy {
+            padding: 140px 0 100px;
+        }
+
+        .policy h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .policy .updated {
+            color: #777;
+            font-size: 0.9rem;
+            margin-bottom: 50px;
+            display: block;
+        }
+
+        .policy h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            color: #fff;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .policy p, .policy li {
+            color: #b5b5b5;
+            font-size: 0.98rem;
+            margin-bottom: 12px;
+        }
+
+        .policy ul { padding-left: 22px; margin-bottom: 15px; }
+        .policy li { margin-bottom: 8px; }
+        .policy a { color: #fff; text-decoration: underline; text-decoration-color: #555; transition: text-decoration-color 0.3s; }
+        .policy a:hover { text-decoration-color: #fff; }
+        .policy strong { color: #fff; }
+
+        .note {
+            background: rgba(255,255,255,0.05);
+            border-left: 3px solid #fff;
+            padding: 18px 22px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .note p { margin-bottom: 0; font-size: 0.95rem; }
+
+        /* --- ПОДВАЛ --- */
+        footer { padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.9); font-size: 0.85rem; color: #777; }
+        .footer-content { display: flex; flex-direction: column; gap: 15px; text-align: center; }
+        .footer-links a { color: #777; text-decoration: underline; margin: 0 10px; transition: color 0.3s; }
+        .footer-links a:hover { color: #fff; }
+
+        /* --- АДАПТИВ --- */
+        @media (max-width: 768px) {
+            .nav { display: none; }
+            .header { justify-content: center; }
+            .policy h1 { font-size: 1.8rem; }
+            .policy { padding: 120px 0 60px; }
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="back">← На главную</a>
-        <h1>Условия использования</h1>
-        <p>Настоящие Условия регулируют использование информации, размещённой на сайте <strong>SpaceDev</strong>.</p>
 
-        <h2>1. Статус сайта</h2>
-        <p>1.1. Сайт является информационной визиткой физического лица и предназначен для демонстрации услуг по разработке сайтов.</p>
-        <p>1.2. Информация на Сайте не является публичной офертой (ст. 437 ГК РФ). Стоимость и условия работ обсуждаются индивидуально в переписке.</p>
+    <header class="header">
+        <a href="index.html" class="logo" style="color: inherit; text-decoration: none;">SpaceDev<span>.</span></a>
+        <nav class="nav">
+            <a href="index.html">На главную</a>
+            <a href="index.html#contact" class="btn-small">Связаться</a>
+        </nav>
+    </header>
 
-        <h2>2. Использование материалов</h2>
-        <p>2.1. Все материалы Сайта (тексты, дизайн, код) являются собственностью владельца Сайта. Копирование без разрешения не допускается.</p>
+    <main class="policy">
+        <div class="container">
+            <h1>Условия использования</h1>
+            <span class="updated">Дата последнего обновления: 1 января 2026 г.</span>
 
-        <h2>3. Ограничение ответственности</h2>
-        <p>3.1. Владелец Сайта не несёт ответственности за возможные перебои в работе Сайта или за действия третьих лиц (хостинг, мессенджеры).</p>
-        <p>3.2. Переходя по ссылкам на сторонние ресурсы (Telegram, WhatsApp, Макс), Пользователь принимает их условия использования.</p>
+            <div class="note">
+                <p>Настоящие Условия регулируют порядок использования сайта <strong>SpaceDev</strong>. Пожалуйста, ознакомьтесь с ними перед использованием Сайта.</p>
+            </div>
 
-        <h2>4. Контакты</h2>
-        <p>Телефон: <strong>+7 (951) 886-67-08</strong>.</p>
-    </div>
+            <h2>1. Общие положения</h2>
+            <p>1.1. Сайт SpaceDev (далее — Сайт) является информационным ресурсом, посвящённым услугам по разработке сайтов.</p>
+            <p>1.2. Использование Сайта означает полное и безоговорочное согласие пользователя с настоящими Условиями. В случае несогласия пользователь обязан прекратить использование Сайта.</p>
+            <p>1.3. Владелец Сайта — физическое лицо, осуществляющее разработку сайтов на заказ (далее — Администрация).</p>
+
+            <h2>2. Статус информации на Сайте</h2>
+            <p>2.1. Вся информация, размещённая на Сайте (включая описания услуг, цены, сроки), носит <strong>исключительно информационный характер</strong> и не является публичной офертой в соответствии со ст. 437 Гражданского кодекса РФ.</p>
+            <p>2.2. Окончательные условия сотрудничества, объём работ и стоимость обсуждаются индивидуально и фиксируются в переписке или отдельном договоре.</p>
+
+            <h2>3. Интеллектуальная собственность</h2>
+            <p>3.1. Все материалы Сайта (тексты, дизайн, графика, код) являются объектами интеллектуальной собственности Администрации или используются на законных основаниях.</p>
+            <p>3.2. Запрещается копирование, распространение или коммерческое использование материалов Сайта без предварительного письменного согласия Администрации.</p>
+
+            <h2>4. Ограничение ответственности</h2>
+            <p>4.1. Администрация стремится поддерживать актуальность информации, однако не гарантирует её абсолютную точность и полноту.</p>
+            <p>4.2. Администрация не несёт ответственности за возможные перебои в работе Сайта, вызванные техническими неполадками, действиями хостинг-провайдера или обстоятельствами непреодолимой силы.</p>
+            <p>4.3. Администрация не несёт ответственности за содержание внешних ресурсов, ссылки на которые могут быть размещены на Сайте (например, мессенджеры Telegram, WhatsApp, «Макс»).</p>
+
+            <h2>5. Порядок оказания услуг</h2>
+            <p>5.1. Заказчик может обратиться к Администрации через контактные данные, указанные на Сайте.</p>
+            <p>5.2. Перед началом работ стороны согласовывают техническое задание, сроки и стоимость. Работы начинаются после внесения предоплаты (если иное не оговорено сторонами).</p>
+            <p>5.3. Оказание услуг регулируется отдельным договором или согласованными условиями в переписке.</p>
+
+            <h2>6. Изменение Условий</h2>
+            <p>6.1. Администрация оставляет за собой право в любое время изменять настоящие Условия без уведомления пользователя.</p>
+            <p>6.2. Новая редакция вступает в силу с момента её размещения на Сайте.</p>
+
+            <h2>7. Контакты</h2>
+            <p>По любым вопросам, связанным с настоящими Условиями, вы можете связаться с Администрацией:</p>
+            <ul>
+                <li>Телефон: <a href="tel:+79518866708">+7 (951) 886-67-08</a></li>
+                <li>Telegram: <a href="https://t.me/efimka64ru" target="_blank">@efimka64ru</a></li>
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2026 SpaceDev. Все права защищены.</p>
+            <p>Владелец сайта: <strong>физическое лицо</strong> (разработка сайтов на заказ).</p>
+            <p>Связь: <a href="tel:+79518866708" style="color: #777; text-decoration: none;">+7 (951) 886-67-08</a></p>
+            <div class="footer-links">
+                <a href="privacy.html">Политика конфиденциальности</a>
+                <a href="terms.html">Условия использования</a>
+            </div>
+            <p style="font-size: 0.75rem; margin-top: 10px; opacity: 0.5;">Сайт носит информационный характер и не является публичной офертой.</p>
+        </div>
+    </footer>
+
 </body>
 </html>
